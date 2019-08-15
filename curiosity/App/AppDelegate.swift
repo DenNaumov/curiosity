@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func initView() {
-        let loadingModule = LoadingRouter.createModule()
+        let loadingModule = GalleryRouter.createModule()
         let navigationController = UINavigationController(rootViewController: loadingModule)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = navigationController

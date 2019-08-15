@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		910EE61A22FC364D00FAB53E /* ImageZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910EE61922FC364D00FAB53E /* ImageZoomView.swift */; };
-		918907FC22FE919800D60DB7 /* LoadingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907D622FE919800D60DB7 /* LoadingEntity.swift */; };
-		918907FD22FE919800D60DB7 /* LoadingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907D822FE919800D60DB7 /* LoadingPresenter.swift */; };
-		918907FE22FE919800D60DB7 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907DA22FE919800D60DB7 /* LoadingViewController.swift */; };
-		918907FF22FE919800D60DB7 /* LoadingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907DC22FE919800D60DB7 /* LoadingProtocols.swift */; };
-		9189080022FE919800D60DB7 /* LoadingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907DE22FE919800D60DB7 /* LoadingInteractor.swift */; };
-		9189080122FE919800D60DB7 /* LoadingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907E022FE919800D60DB7 /* LoadingRouter.swift */; };
 		9189080222FE919800D60DB7 /* GalleryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907E322FE919800D60DB7 /* GalleryEntity.swift */; };
 		9189080322FE919800D60DB7 /* GalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907E622FE919800D60DB7 /* GalleryPresenter.swift */; };
 		9189080422FE919800D60DB7 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918907E822FE919800D60DB7 /* GalleryViewController.swift */; };
@@ -37,12 +31,6 @@
 		3939CDB185850A4A614A087E /* Pods_curiosity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_curiosity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6141F8608673FFDC2F34AF62 /* Pods-maps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maps.debug.xcconfig"; path = "Target Support Files/Pods-maps/Pods-maps.debug.xcconfig"; sourceTree = "<group>"; };
 		910EE61922FC364D00FAB53E /* ImageZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomView.swift; sourceTree = "<group>"; };
-		918907D622FE919800D60DB7 /* LoadingEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingEntity.swift; sourceTree = "<group>"; };
-		918907D822FE919800D60DB7 /* LoadingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPresenter.swift; sourceTree = "<group>"; };
-		918907DA22FE919800D60DB7 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		918907DC22FE919800D60DB7 /* LoadingProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingProtocols.swift; sourceTree = "<group>"; };
-		918907DE22FE919800D60DB7 /* LoadingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingInteractor.swift; sourceTree = "<group>"; };
-		918907E022FE919800D60DB7 /* LoadingRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingRouter.swift; sourceTree = "<group>"; };
 		918907E322FE919800D60DB7 /* GalleryEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryEntity.swift; sourceTree = "<group>"; };
 		918907E622FE919800D60DB7 /* GalleryPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryPresenter.swift; sourceTree = "<group>"; };
 		918907E822FE919800D60DB7 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
@@ -90,72 +78,10 @@
 		918907D322FE919800D60DB7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				918907D422FE919800D60DB7 /* Loading */,
 				918907E122FE919800D60DB7 /* Gallery */,
 				918907EF22FE919800D60DB7 /* Image */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		918907D422FE919800D60DB7 /* Loading */ = {
-			isa = PBXGroup;
-			children = (
-				918907D522FE919800D60DB7 /* Entity */,
-				918907D722FE919800D60DB7 /* Presenter */,
-				918907D922FE919800D60DB7 /* View */,
-				918907DB22FE919800D60DB7 /* Protocols */,
-				918907DD22FE919800D60DB7 /* Interactor */,
-				918907DF22FE919800D60DB7 /* Router */,
-			);
-			path = Loading;
-			sourceTree = "<group>";
-		};
-		918907D522FE919800D60DB7 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				918907D622FE919800D60DB7 /* LoadingEntity.swift */,
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
-		918907D722FE919800D60DB7 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				918907D822FE919800D60DB7 /* LoadingPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		918907D922FE919800D60DB7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				918907DA22FE919800D60DB7 /* LoadingViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		918907DB22FE919800D60DB7 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				918907DC22FE919800D60DB7 /* LoadingProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		918907DD22FE919800D60DB7 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				918907DE22FE919800D60DB7 /* LoadingInteractor.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		918907DF22FE919800D60DB7 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				918907E022FE919800D60DB7 /* LoadingRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		918907E122FE919800D60DB7 /* Gallery */ = {
@@ -436,21 +362,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				918907FE22FE919800D60DB7 /* LoadingViewController.swift in Sources */,
 				9189080322FE919800D60DB7 /* GalleryPresenter.swift in Sources */,
 				9189080622FE919800D60DB7 /* GalleryInteractor.swift in Sources */,
 				9194841922F87C0F003B1B69 /* AppDelegate.swift in Sources */,
-				918907FC22FE919800D60DB7 /* LoadingEntity.swift in Sources */,
 				9194842D22F8827C003B1B69 /* GalleryCollectionViewCell.swift in Sources */,
 				9189080422FE919800D60DB7 /* GalleryViewController.swift in Sources */,
-				918907FF22FE919800D60DB7 /* LoadingProtocols.swift in Sources */,
-				9189080122FE919800D60DB7 /* LoadingRouter.swift in Sources */,
 				9189080222FE919800D60DB7 /* GalleryEntity.swift in Sources */,
-				9189080022FE919800D60DB7 /* LoadingInteractor.swift in Sources */,
 				9189080522FE919800D60DB7 /* GalleryProtocols.swift in Sources */,
 				910EE61A22FC364D00FAB53E /* ImageZoomView.swift in Sources */,
 				9189080D22FE919800D60DB7 /* ImageRouter.swift in Sources */,
-				918907FD22FE919800D60DB7 /* LoadingPresenter.swift in Sources */,
 				9189080822FE919800D60DB7 /* ImageEntity.swift in Sources */,
 				9189080A22FE919800D60DB7 /* ImageViewController.swift in Sources */,
 				9189080922FE919800D60DB7 /* ImagePresenter.swift in Sources */,

@@ -12,10 +12,16 @@ import Foundation
 protocol GalleryViewToPresenterProtocol: AnyObject {
     func readyToShow()
     func openImage(_: URL)
+    func didScrollToBottom()
+    func didLongPressOnItem(at: IndexPath)
 }
 
 protocol GalleryPresenterToViewProtocol: AnyObject {
-    func addImages(_: [URL])
+    func showUpdateIndicator()
+    func hideUpdateIndicator()
+    func initiateGallery(_: [URL])
+    func addToGallery(_: [URL])
+    func removeItemFromGallery(at: IndexPath)
 }
 
 protocol GalleryPresenterToRouterProtocol: AnyObject {
@@ -23,11 +29,14 @@ protocol GalleryPresenterToRouterProtocol: AnyObject {
 }
 
 protocol GalleryPresenterToInteractorProtocol: AnyObject {
-    func loadImages()
+    func loadSavedImages()
+    func downloadFirstPage()
+    func downloadNextPage()
 }
 
 protocol GalleryInteractorToPresenterProtocol: AnyObject {
-    func setURLs(_: [URL])
+    func didFinishDownloadInitialImages(_: [URL])
+    func didFinishDownloadUpdate(_: [URL])
 }
 
 // MARK: Gallery Assembly protocols

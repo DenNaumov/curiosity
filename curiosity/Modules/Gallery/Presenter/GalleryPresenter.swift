@@ -13,24 +13,44 @@ class GalleryPresenter: GalleryPresenterAssemblyProtocol {
     weak var viewController: GalleryPresenterToViewProtocol?
     var interactor: GalleryPresenterToInteractorProtocol?
     var router: GalleryPresenterToRouterProtocol?
-
+    var isUpdateDownloadInProgress = false
 }
 
 extension GalleryPresenter: GalleryViewToPresenterProtocol {
+
+    func didLongPressOnItem(at indexPath: IndexPath) {
+        viewController?.removeItemFromGallery(at: indexPath)
+    }
+
+    func didScrollToBottom() {
+        if !isUpdateDownloadInProgress {
+            isUpdateDownloadInProgress = true
+            viewController?.showUpdateIndicator()
+            interactor?.downloadNextPage()
+        }
+    }
+
     func openImage(_ url: URL) {
         let viewController = self.viewController as! GalleryViewController
         if let navigationController = viewController.navigationController {
             router?.gotoImage(imageURL: url, navigation: navigationController)
         }
     }
-    
+
     func readyToShow() {
-        interactor?.loadImages()
+        interactor?.downloadFirstPage()
     }
 }
 
 extension GalleryPresenter: GalleryInteractorToPresenterProtocol {
-    func setURLs(_ urls: [URL]) {
-        viewController?.addImages(urls)
+
+    func didFinishDownloadUpdate(_ urls: [URL]) {
+        isUpdateDownloadInProgress = false
+        viewController?.hideUpdateIndicator()
+        viewController?.addToGallery(urls)
+    }
+
+    func didFinishDownloadInitialImages(_ urls: [URL]) {
+        viewController?.initiateGallery(urls)
     }
 }
