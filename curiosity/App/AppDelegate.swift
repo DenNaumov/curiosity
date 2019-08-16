@@ -23,9 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func initView() {
         let galleryModule = GalleryRouter.createModule()
-        let navigationController = UINavigationController(rootViewController: galleryModule)
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = navigationController
+        self.window?.rootViewController = galleryModule
         self.window?.makeKeyAndVisible()
     }
 }

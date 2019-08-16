@@ -31,10 +31,7 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
     }
 
     func openImage(_ url: URL) {
-        let viewController = self.viewController as! GalleryViewController
-        if let navigationController = viewController.navigationController {
-            router?.gotoImage(imageURL: url, navigation: navigationController)
-        }
+        router?.gotoImage(imageURL: url)
     }
 
     func readyToShow() {
