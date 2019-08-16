@@ -31,7 +31,7 @@ class GalleryRouter {
 extension GalleryRouter: GalleryPresenterToRouterProtocol {
 
     func gotoImage(imageURL: URL, navigation: UINavigationController) {
-        let gallery = ImageRouter.createModule(imageURL: imageURL)
-        navigation.pushViewController(gallery, animated: true)
+        let imageModule = ImageRouter.createModule(imageURL: imageURL)
+        navigation.pushViewController(imageModule, animated: true)
     }
 }
