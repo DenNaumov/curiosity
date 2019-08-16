@@ -59,13 +59,13 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         do {
             let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURLs = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-    
+            presenter?.didLoadSavedImages(fileURLs)
         } catch {
             print(error)
         }
     }
 
-    func downloadFirstPage() {
+    func downloadFirstPageImages() {
         request(host + "?" + getParamsString(page: 1)).responseJSON(completionHandler: imageListRetrieveHandler)
     }
 
@@ -73,28 +73,28 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         switch response.result {
         case .success(let value):
             DispatchQueue.main.async() {
-            guard let responseArray = value as? [String: Any] else { return }
-            if let responsePhotos = responseArray["photos"] as? [[String: Any]] {
-                var imageList: [URL] = []
-                for photoObject in responsePhotos {
-                    guard
-                        let urlString = photoObject["img_src"] as? String,
-                        let url = URL(string: urlString)
-                        else { return }
-                    imageList.append(url)
+                guard let responseArray = value as? [String: Any] else { return }
+                if let responsePhotos = responseArray["photos"] as? [[String: Any]] {
+                    var imageList: [URL] = []
+                    for photoObject in responsePhotos {
+                        guard
+                            let urlString = photoObject["img_src"] as? String,
+                            let url = URL(string: urlString)
+                            else { return }
+                        imageList.append(url)
+                    }
+                    self.imageListRetrieved(imageList)
+                } else if
+                    let responseError = responseArray["error"] as? [String: Any],
+                    let error = responseError["message"] as? String
+                {
+                    self.presenter?.reportError(error)
                 }
-                self.imageListRetrieved(imageList)
-            } else if
-                let responseError = responseArray["error"] as? [String: Any]//,
-//                let error = responseError["message"] as? String
-            {
-                print(responseError)
-//                presenter?.reportError(error)
-            }
             }
         case .failure(let error):
-            print(error)
-//            presenter?.reportError("Connection Error")
+            if page == 1 {
+                self.loadOfflineImages()
+            }
         }
     }
 

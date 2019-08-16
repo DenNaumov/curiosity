@@ -22,6 +22,8 @@ protocol GalleryPresenterToViewProtocol: AnyObject {
     func initiateGallery(_: [URL])
     func addToGallery(_: [URL])
     func removeItemFromGallery(at: IndexPath)
+    func initiateGalleryOffline(_: [URL])
+    func showErrorMessage(_: String)
 }
 
 protocol GalleryPresenterToRouterProtocol: AnyObject {
@@ -30,13 +32,15 @@ protocol GalleryPresenterToRouterProtocol: AnyObject {
 
 protocol GalleryPresenterToInteractorProtocol: AnyObject {
     func loadSavedImages()
-    func downloadFirstPage()
+    func downloadFirstPageImages()
     func downloadNextPage()
 }
 
 protocol GalleryInteractorToPresenterProtocol: AnyObject {
     func didFinishDownloadInitialImages(_: [URL])
     func didFinishDownloadUpdate(_: [URL])
+    func didLoadSavedImages(_: [URL])
+    func reportError(_: String)
 }
 
 // MARK: Gallery Assembly protocols

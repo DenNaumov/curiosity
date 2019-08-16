@@ -17,7 +17,7 @@ class GalleryViewController: UIViewController, GalleryViewAssemblyProtocol {
     private var dataSourceURLs: [URL] = []
 
     private var collectionView: UICollectionView!
-    private var indicator: UIActivityIndicatorView!
+    private var loadingIndicator: UIActivityIndicatorView!
     private var updateIndicator : UIActivityIndicatorView!
     
     struct Appearance {
@@ -43,10 +43,10 @@ class GalleryViewController: UIViewController, GalleryViewAssemblyProtocol {
     }
 
     private func setupIndicator() {
-        indicator = UIActivityIndicatorView(style: .whiteLarge)
-        indicator?.startAnimating()
-        view.addSubview(indicator)
-        indicator?.snp.makeConstraints { make in
+        loadingIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        loadingIndicator?.startAnimating()
+        view.addSubview(loadingIndicator)
+        loadingIndicator?.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
     }
@@ -84,25 +84,40 @@ extension GalleryViewController: GalleryPresenterToViewProtocol {
         updateIndicator.stopAnimating()
     }
 
-    func initiateGallery(_ urls: [URL]) {
-        dataSourceURLs = urls
+    func initiateGallery(_ localURLs: [URL]) {
+        dataSourceURLs = localURLs
         setupCollectionView()
     }
 
-    func addToGallery(_ urls: [URL]) {
+    func addToGallery(_ localURLs: [URL]) {
         let oldCount = dataSourceURLs.count
-        let addedCount = urls.count
+        let addedCount = localURLs.count
         var indexes: [IndexPath] = []
         for i in oldCount...(oldCount + addedCount - 1) {
             indexes.append(IndexPath(item: i, section: 0))
         }
-        dataSourceURLs.append(contentsOf: urls)
+        dataSourceURLs.append(contentsOf: localURLs)
         collectionView?.insertItems(at: indexes)
     }
     
     func removeItemFromGallery(at indexPath: IndexPath) {
         dataSourceURLs.remove(at: indexPath.row)
         collectionView.deleteItems(at: [indexPath])
+    }
+
+    func initiateGalleryOffline(_ localURLs: [URL]) {
+        dataSourceURLs = localURLs
+        setupCollectionView()
+    }
+    
+    func showErrorMessage(_ text: String) {
+        loadingIndicator.stopAnimating()
+        let label = UILabel(frame: .zero)
+        label.text = text
+        view.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
 }
 

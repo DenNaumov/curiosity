@@ -38,19 +38,27 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
     }
 
     func readyToShow() {
-        interactor?.downloadFirstPage()
+        interactor?.downloadFirstPageImages()
     }
 }
 
 extension GalleryPresenter: GalleryInteractorToPresenterProtocol {
 
-    func didFinishDownloadUpdate(_ urls: [URL]) {
+    func didFinishDownloadUpdate(_ localURLs: [URL]) {
         isUpdateDownloadInProgress = false
         viewController?.hideUpdateIndicator()
-        viewController?.addToGallery(urls)
+        viewController?.addToGallery(localURLs)
     }
 
-    func didFinishDownloadInitialImages(_ urls: [URL]) {
-        viewController?.initiateGallery(urls)
+    func didFinishDownloadInitialImages(_ localURLs: [URL]) {
+        viewController?.initiateGallery(localURLs)
+    }
+
+    func didLoadSavedImages(_ localURLs: [URL]) {
+        viewController?.initiateGalleryOffline(localURLs)
+    }
+    
+    func reportError(_ text: String) {
+        viewController?.showErrorMessage(text)
     }
 }
