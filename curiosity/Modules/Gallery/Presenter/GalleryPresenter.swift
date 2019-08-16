@@ -26,7 +26,7 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
         if !isUpdateDownloadInProgress {
             isUpdateDownloadInProgress = true
             viewController?.showUpdateIndicator()
-            interactor?.downloadNextPage()
+            interactor?.downloadNextPageImages()
         }
     }
 

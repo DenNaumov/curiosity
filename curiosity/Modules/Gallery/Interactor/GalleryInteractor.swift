@@ -21,14 +21,14 @@ class GalleryInteractor: GalleryInteractorAssemblyProtocol {
 
 extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
  
-    func downloadNextPage() {
-        currentPage += 1
-        downloadImages(atPage: currentPage)
+    func downloadFirstPageImages() {
+        request(host + "?" + getParamsString(page: 1)).responseJSON(completionHandler: imageListRetrieveHandler)
     }
-
-    func downloadImages(atPage page: Int) {
+    
+    func downloadNextPageImages() {
+        currentPage += 1
         pageFiles = []
-        request(host + "?" + getParamsString(page: page)).responseJSON(completionHandler: imageListRetrieveHandler)
+        request(host + "?" + getParamsString(page: currentPage)).responseJSON(completionHandler: imageListRetrieveHandler)
     }
 
     func loadSavedImages() {
@@ -53,10 +53,6 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         } catch {
             print(error)
         }
-    }
-
-    func downloadFirstPageImages() {
-        request(host + "?" + getParamsString(page: 1)).responseJSON(completionHandler: imageListRetrieveHandler)
     }
 
     private func getParamsString(page: Int) -> String {

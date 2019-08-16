@@ -33,7 +33,7 @@ protocol GalleryPresenterToRouterProtocol: AnyObject {
 protocol GalleryPresenterToInteractorProtocol: AnyObject {
     func loadSavedImages()
     func downloadFirstPageImages()
-    func downloadNextPage()
+    func downloadNextPageImages()
 }
 
 protocol GalleryInteractorToPresenterProtocol: AnyObject {
