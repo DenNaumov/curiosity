@@ -12,32 +12,27 @@ import SnapKit
 class ImageViewController: UIViewController, ImageViewAssemblyProtocol {
 
     var presenter: ImageViewToPresenterProtocol?
+    private var previewImageView: ImageZoomView? = nil
 
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        presenter?.readyToShow()
     }
 
-    private var previewImageView: ImageZoomView? = nil
-    
-    init(photo: URL) {
-        super.init(nibName: nil, bundle: nil)
-        
+    func showImage(from localURL: URL) {
+
         guard
-            let imageData = NSData(contentsOf: photo),
+            let imageData = NSData(contentsOf: localURL),
             let image = UIImage(data: imageData as Data)
             else { return }
         
         previewImageView = ImageZoomView(frame: .zero, image: image)
         view.addSubview(previewImageView!)
-        previewImageView!.snp.makeConstraints { make in
+        previewImageView?.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 

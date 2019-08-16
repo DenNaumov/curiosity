@@ -12,9 +12,9 @@ class ImageRouter {
 
     static func createModule(imageURL: URL) -> UIViewController {
 
-        let viewController = ImageViewController(photo: imageURL)
+        let viewController = ImageViewController()
 
-        let presenter = ImagePresenter()
+        let presenter = ImagePresenter(photoURL: imageURL)
         let interactor = ImageInteractor()
         let router = ImageRouter()
 

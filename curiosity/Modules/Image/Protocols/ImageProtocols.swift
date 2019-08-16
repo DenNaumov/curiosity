@@ -6,14 +6,14 @@
 //  Copyright © 2019 Денис Наумов. All rights reserved.
 //
 
-protocol ImageViewToPresenterProtocol: AnyObject {
-    // MARK: define protocol
+import UIKit
 
+protocol ImageViewToPresenterProtocol: AnyObject {
+    func readyToShow()
 }
 
 protocol ImagePresenterToViewProtocol: AnyObject {
-    // MARK: define protocol
-
+    func showImage(from: URL)
 }
 
 protocol ImagePresenterToRouterProtocol: AnyObject {

@@ -48,8 +48,8 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
     func loadOfflineImages() {
         do {
             let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURLs = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-            presenter?.didLoadSavedImages(fileURLs)
+            let filesInDocuments = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
+            presenter?.didLoadSavedImages(filesInDocuments)
         } catch {
             print(error)
         }
