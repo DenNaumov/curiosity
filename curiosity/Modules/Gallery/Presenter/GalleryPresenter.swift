@@ -26,15 +26,12 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
         if !isUpdateDownloadInProgress {
             isUpdateDownloadInProgress = true
             viewController?.showUpdateIndicator()
-            interactor?.downloadNextPage()
+            interactor?.downloadNextPageImages()
         }
     }
 
     func openImage(_ url: URL) {
-        let viewController = self.viewController as! GalleryViewController
-        if let navigationController = viewController.navigationController {
-            router?.gotoImage(imageURL: url, navigation: navigationController)
-        }
+        router?.gotoImage(imageURL: url)
     }
 
     func readyToShow() {

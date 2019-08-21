@@ -27,13 +27,13 @@ protocol GalleryPresenterToViewProtocol: AnyObject {
 }
 
 protocol GalleryPresenterToRouterProtocol: AnyObject {
-    func gotoImage(imageURL: URL, navigation: UINavigationController)
+    func gotoImage(imageURL: URL)
 }
 
 protocol GalleryPresenterToInteractorProtocol: AnyObject {
     func loadSavedImages()
     func downloadFirstPageImages()
-    func downloadNextPage()
+    func downloadNextPageImages()
 }
 
 protocol GalleryInteractorToPresenterProtocol: AnyObject {

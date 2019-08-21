@@ -10,13 +10,14 @@ import UIKit
 
 class GalleryRouter {
 
+    private let rootController: UINavigationController
     static func createModule() -> UIViewController {
 
         let viewController = GalleryViewController()
-
+        let navigationController = UINavigationController(rootViewController: viewController)
         let presenter = GalleryPresenter()
         let interactor = GalleryInteractor()
-        let router = GalleryRouter()
+        let router = GalleryRouter(rootController: navigationController)
 
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -24,14 +25,18 @@ class GalleryRouter {
         presenter.interactor = interactor
         interactor.presenter = presenter
 
-        return viewController
+        return navigationController
+    }
+    
+    init(rootController: UINavigationController) {
+        self.rootController = rootController
     }
 }
 
 extension GalleryRouter: GalleryPresenterToRouterProtocol {
 
-    func gotoImage(imageURL: URL, navigation: UINavigationController) {
-        let gallery = ImageRouter.createModule(imageURL: imageURL)
-        navigation.pushViewController(gallery, animated: true)
+    func gotoImage(imageURL: URL) {
+        let imageModule = ImageRouter.createModule(imageURL: imageURL)
+        rootController.pushViewController(imageModule, animated: true)
     }
 }

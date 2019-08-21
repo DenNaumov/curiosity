@@ -15,40 +15,30 @@ class GalleryInteractor: GalleryInteractorAssemblyProtocol {
     private let params: [String: Any] = ["sol": 100, "api_key": "DEMO_KEY"]
     private let fileManager = FileManager.default
     private var downloadImagesLeft = 0
-    private var page = 1
-    private var pageURLs: [String] = []
+    private var currentPage = 1
+    private var pageFiles: [String] = []
 }
 
 extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
  
-    func downloadNextPage() {
-        page += 1
-        downloadImages(page: page)
+    func downloadFirstPageImages() {
+        request(host + "?" + getParamsString(page: 1)).responseJSON(completionHandler: imageListRetrieveHandler)
     }
-
-    func downloadImages(page: Int) {
-        pageURLs = []
-        print("get list on page \(page)")
-        request(host + "?" + getParamsString(page: page)).responseJSON(completionHandler: imageListRetrieveHandler)
-    }
-
-    private func getParamsString(page: Int) -> String {
-        var paramsString: String = ""
-        for (key, value) in params {
-            paramsString += "\(key)=\(value)&"
-        }
-        paramsString += "page=\(page)"
-        return paramsString
+    
+    func downloadNextPageImages() {
+        currentPage += 1
+        pageFiles = []
+        request(host + "?" + getParamsString(page: currentPage)).responseJSON(completionHandler: imageListRetrieveHandler)
     }
 
     func loadSavedImages() {
         var fileURLs: [URL] = []
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        for i in pageURLs {
-            let fileURL = URL(fileURLWithPath: i, relativeTo: documentDirectory)
+        for fileName in pageFiles {
+            let fileURL = URL(fileURLWithPath: fileName, relativeTo: documentDirectory)
             fileURLs.append(fileURL)
         }
-        if page == 1 {
+        if currentPage == 1 {
             presenter?.didFinishDownloadInitialImages(fileURLs)
         } else {
             presenter?.didFinishDownloadUpdate(fileURLs)
@@ -58,15 +48,20 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
     func loadOfflineImages() {
         do {
             let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURLs = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-            presenter?.didLoadSavedImages(fileURLs)
+            let filesInDocuments = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
+            presenter?.didLoadSavedImages(filesInDocuments)
         } catch {
             print(error)
         }
     }
 
-    func downloadFirstPageImages() {
-        request(host + "?" + getParamsString(page: 1)).responseJSON(completionHandler: imageListRetrieveHandler)
+    private func getParamsString(page: Int) -> String {
+        var paramsString: String = ""
+        for (key, value) in params {
+            paramsString += "\(key)=\(value)&"
+        }
+        paramsString += "page=\(page)"
+        return paramsString
     }
 
     private func imageListRetrieveHandler(response: DataResponse<Any>) {
@@ -92,7 +87,7 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
                 }
             }
         case .failure(let error):
-            if page == 1 {
+            if currentPage == 1 {
                 self.loadOfflineImages()
             }
         }
@@ -117,7 +112,7 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
                     self.downloadImageFinished()
                 }
                 let filename = response?.suggestedFilename ?? url.lastPathComponent
-                self.pageURLs.append(filename)
+                self.pageFiles.append(filename)
                 try self.fileManager.moveItem(at: location, to: documentDirectory.appendingPathComponent(filename))
             } catch {
                 print(error)

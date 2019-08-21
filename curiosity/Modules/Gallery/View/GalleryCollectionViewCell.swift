@@ -24,4 +24,12 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         }
         self.imageView = imageView
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView?.removeFromSuperview()
+        if let gestureRecognizer = gestureRecognizers?.first {
+            removeGestureRecognizer(gestureRecognizer)
+        }
+    }
 }

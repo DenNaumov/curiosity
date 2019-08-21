@@ -22,10 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func initView() {
-        let loadingModule = GalleryRouter.createModule()
-        let navigationController = UINavigationController(rootViewController: loadingModule)
+        let galleryModule = GalleryRouter.createModule()
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = navigationController
+        self.window?.rootViewController = galleryModule
         self.window?.makeKeyAndVisible()
     }
 }
