@@ -22,13 +22,13 @@ class GalleryInteractor: GalleryInteractorAssemblyProtocol {
 extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
  
     func downloadFirstPageImages() {
-        request(host + "?" + getParamsString(page: 1)).responseJSON(completionHandler: imageListRetrieveHandler)
+        request(host + "?" + getParamsString(page: 1)).responseData(completionHandler: imageListRetrieveHandler)
     }
     
     func downloadNextPageImages() {
         currentPage += 1
         pageFiles = []
-        request(host + "?" + getParamsString(page: currentPage)).responseJSON(completionHandler: imageListRetrieveHandler)
+        request(host + "?" + getParamsString(page: currentPage)).responseData(completionHandler: imageListRetrieveHandler)
     }
 
     func loadSavedImages() {
@@ -64,28 +64,13 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         return paramsString
     }
 
-    private func imageListRetrieveHandler(response: DataResponse<Any>) {
+    private func imageListRetrieveHandler(response: DataResponse<Data>) {
         switch response.result {
         case .success(let value):
-            DispatchQueue.main.async() {
-                guard let responseArray = value as? [String: Any] else { return }
-                if let responsePhotos = responseArray["photos"] as? [[String: Any]] {
-                    var imageList: [URL] = []
-                    for photoObject in responsePhotos {
-                        guard
-                            let urlString = photoObject["img_src"] as? String,
-                            let url = URL(string: urlString)
-                            else { return }
-                        imageList.append(url)
-                    }
-                    self.imageListRetrieved(imageList)
-                } else if
-                    let responseError = responseArray["error"] as? [String: Any],
-                    let error = responseError["message"] as? String
-                {
-                    self.presenter?.reportError(error)
-                }
+            let responseData: ServerResponseData = try! JSONDecoder().decode(ServerResponseData.self, from: value)
+            responseData.photos.forEach { (photo) in
             }
+            self.imageListRetrieved(responseData.photos)
         case .failure(let error):
             if currentPage == 1 {
                 self.loadOfflineImages()
@@ -93,14 +78,15 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         }
     }
 
-    private func imageListRetrieved(_ imageList: [URL]) {
+    private func imageListRetrieved(_ imageList: [CuriosityPhoto]) {
         downloadImagesLeft = imageList.count
-        for imageURL in imageList {
-            downloadImage(from: imageURL)
+        for image in imageList {
+            downloadImage(image)
         }
     }
 
-    private func downloadImage(from url: URL) {
+    private func downloadImage(_ imageData: CuriosityPhoto) {
+        let url = imageData.remoteURL
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         getData(from: url) { [unowned self] location, response, error in
             guard let location = location else {

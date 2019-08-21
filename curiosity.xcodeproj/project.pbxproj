@@ -24,6 +24,7 @@
 		9194842222F87C11003B1B69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9194842122F87C11003B1B69 /* Assets.xcassets */; };
 		9194842D22F8827C003B1B69 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9194842C22F8827C003B1B69 /* GalleryCollectionViewCell.swift */; };
 		B7FF887D56EDB214709C9EB7 /* Pods_curiosity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3939CDB185850A4A614A087E /* Pods_curiosity.framework */; };
+		BCB1D5692308491C00587766 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB1D5682308491C00587766 /* ApiResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		9194842122F87C11003B1B69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9194842622F87C11003B1B69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9194842C22F8827C003B1B69 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		BCB1D5682308491C00587766 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		F19A6F92B8200CA9679AC73B /* Pods-curiosity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-curiosity.debug.xcconfig"; path = "Target Support Files/Pods-curiosity/Pods-curiosity.debug.xcconfig"; sourceTree = "<group>"; };
 		F6BF1C246323E344B15EEEB9 /* Pods-maps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maps.release.xcconfig"; path = "Target Support Files/Pods-maps/Pods-maps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 		918907E122FE919800D60DB7 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				BCB1D56A2308492600587766 /* Class */,
 				918907E222FE919800D60DB7 /* Entity */,
 				918907E522FE919800D60DB7 /* Presenter */,
 				918907E722FE919800D60DB7 /* View */,
@@ -253,6 +256,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BCB1D56A2308492600587766 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				BCB1D5682308491C00587766 /* ApiResponse.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -362,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB1D5692308491C00587766 /* ApiResponse.swift in Sources */,
 				9189080322FE919800D60DB7 /* GalleryPresenter.swift in Sources */,
 				9189080622FE919800D60DB7 /* GalleryInteractor.swift in Sources */,
 				9194841922F87C0F003B1B69 /* AppDelegate.swift in Sources */,
