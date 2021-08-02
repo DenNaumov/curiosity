@@ -12,9 +12,9 @@ class GalleryCollectionViewCell: UICollectionViewCell {
 
     var imageView: UIImageView? = nil
 
-    func setup(with fileURL: URL) {
-        guard let imageData = NSData(contentsOf: fileURL) else { return }
-        let image = UIImage(data: imageData as Data)
+    func setup(with image: ImageFile) {
+//        guard let imageData = NSData(contentsOf: fileURL) else { return }
+        let image = UIImage(data: image.getContent() as Data)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true

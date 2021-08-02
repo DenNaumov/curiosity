@@ -30,8 +30,8 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
         }
     }
 
-    func openImage(_ url: URL) {
-        router?.presentImage(withURL: url)
+    func openImage(_ url: ImageFile) {
+        router?.presentImage(file: url)
     }
 
     func readyToShow() {
@@ -41,18 +41,18 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
 
 extension GalleryPresenter: GalleryInteractorToPresenterProtocol {
 
-    func didFinishDownloadUpdate(_ localURLs: [URL]) {
+    func didFinishDownloadUpdate(_ imageFiles: [ImageFile]) {
         isUpdateDownloadInProgress = false
         viewController?.hideUpdateIndicator()
-        viewController?.addToGallery(localURLs)
+        viewController?.addToGallery(imageFiles)
     }
 
-    func didFinishDownloadInitialImages(_ localURLs: [URL]) {
-        viewController?.initiateGallery(localURLs)
+    func didFinishDownloadInitialImages(_ imageFiles: [ImageFile]) {
+        viewController?.initiateGallery(imageFiles)
     }
 
-    func didLoadSavedImages(_ localURLs: [URL]) {
-        viewController?.initiateGalleryOffline(localURLs)
+    func didLoadSavedImages(_ imageFiles: [ImageFile]) {
+        viewController?.initiateGalleryOffline(imageFiles)
     }
     
     func reportError(_ text: String) {

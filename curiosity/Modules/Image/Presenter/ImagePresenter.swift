@@ -13,17 +13,17 @@ class ImagePresenter: ImagePresenterAssemblyProtocol {
     weak var viewController: ImagePresenterToViewProtocol?
     var interactor: ImagePresenterToInteractorProtocol?
     var router: ImagePresenterToRouterProtocol?
-    let photoURL: URL
+    let imageFile: ImageFile
     
-    init(photoURL: URL) {
-        self.photoURL = photoURL
+    init(imageFile: ImageFile) {
+        self.imageFile = imageFile
     }
 
 }
 
 extension ImagePresenter: ImageViewToPresenterProtocol {
     func readyToShow() {
-        viewController?.showImage(from: photoURL)
+        viewController?.showImage(from: imageFile)
     }
 }
 

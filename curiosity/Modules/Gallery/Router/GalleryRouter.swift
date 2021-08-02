@@ -35,8 +35,8 @@ class GalleryRouter {
 
 extension GalleryRouter: GalleryPresenterToRouterProtocol {
 
-    func presentImage(withURL: URL) {
-        let imageModule = ImageRouter.createModule(imageURL: withURL)
+    func presentImage(file: ImageFile) {
+        let imageModule = ImageRouter.createModule(with: file)
         rootController.pushViewController(imageModule, animated: true)
     }
 }

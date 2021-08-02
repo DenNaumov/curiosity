@@ -10,11 +10,11 @@ import UIKit
 
 class ImageRouter {
 
-    static func createModule(imageURL: URL) -> UIViewController {
+    static func createModule(with imageFile: ImageFile) -> UIViewController {
 
         let viewController = ImageViewController()
 
-        let presenter = ImagePresenter(photoURL: imageURL)
+        let presenter = ImagePresenter(imageFile: imageFile)
         let interactor = ImageInteractor()
         let router = ImageRouter()
 

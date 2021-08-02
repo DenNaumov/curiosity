@@ -14,7 +14,7 @@ class GalleryViewController: UIViewController, GalleryViewAssemblyProtocol {
     var presenter: GalleryViewToPresenterProtocol?
 
     private let reuseIdentifier = "reuseIdentifier"
-    private var dataSourceURLs: [URL] = []
+    private var dataSourceFiles: [ImageFile] = []
 
     private var collectionView: UICollectionView!
     private var loadingIndicator: UIActivityIndicatorView!
@@ -84,30 +84,30 @@ extension GalleryViewController: GalleryPresenterToViewProtocol {
         updateIndicator.stopAnimating()
     }
 
-    func initiateGallery(_ localURLs: [URL]) {
-        dataSourceURLs = localURLs
+    func initiateGallery(_ localFiles: [ImageFile]) {
+        dataSourceFiles = localFiles
         setupCollectionView()
     }
 
-    func addToGallery(_ localURLs: [URL]) {
-        let previousElementsCount = dataSourceURLs.count
-        let addedElementsCount = localURLs.count
+    func addToGallery(_ localFiles: [ImageFile]) {
+        let previousElementsCount = dataSourceFiles.count
+        let addedElementsCount = localFiles.count
         let actualElementsCount = previousElementsCount + addedElementsCount
         var indexes: [IndexPath] = []
         for i in previousElementsCount...(actualElementsCount - 1) {
             indexes.append(IndexPath(item: i, section: 0))
         }
-        dataSourceURLs.append(contentsOf: localURLs)
+        dataSourceFiles.append(contentsOf: localFiles)
         collectionView?.insertItems(at: indexes)
     }
     
     func removeItemFromGallery(at indexPath: IndexPath) {
-        dataSourceURLs.remove(at: indexPath.row)
+        dataSourceFiles.remove(at: indexPath.row)
         collectionView.deleteItems(at: [indexPath])
     }
 
-    func initiateGalleryOffline(_ localURLs: [URL]) {
-        dataSourceURLs = localURLs
+    func initiateGalleryOffline(_ imageFiles: [ImageFile]) {
+        dataSourceFiles = imageFiles
         setupCollectionView()
     }
     
@@ -132,7 +132,7 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
 extension GalleryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSourceURLs.count
+        return dataSourceFiles.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -143,7 +143,7 @@ extension GalleryViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GalleryCollectionViewCell
         
         cell.backgroundColor = .white
-        cell.setup(with: dataSourceURLs[indexPath.row])
+        cell.setup(with: dataSourceFiles[indexPath.row])
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressHandler))
         longPressRecognizer.minimumPressDuration = 1.0
@@ -156,8 +156,8 @@ extension GalleryViewController: UICollectionViewDataSource {
 extension GalleryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let photoURL = dataSourceURLs[indexPath.row]
-        presenter?.openImage(photoURL)
+        let imageFile = dataSourceFiles[indexPath.row]
+        presenter?.openImage(imageFile)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

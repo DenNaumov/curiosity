@@ -21,12 +21,10 @@ class ImageViewController: UIViewController, ImageViewAssemblyProtocol {
         presenter?.readyToShow()
     }
 
-    func showImage(from localURL: URL) {
+    func showImage(from file: ImageFile) {
 
-        guard
-            let imageData = NSData(contentsOf: localURL),
-            let image = UIImage(data: imageData as Data)
-            else { return }
+        let imageData = file.getContent()
+        guard let image = UIImage(data: imageData as Data) else { return }
         
         previewImageView = ImageZoomView(frame: .zero, image: image)
         view.addSubview(previewImageView!)

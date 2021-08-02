@@ -13,7 +13,7 @@ protocol ImageViewToPresenterProtocol: AnyObject {
 }
 
 protocol ImagePresenterToViewProtocol: AnyObject {
-    func showImage(from: URL)
+    func showImage(from: ImageFile)
 }
 
 protocol ImagePresenterToRouterProtocol: AnyObject {

@@ -11,7 +11,7 @@ import Foundation
 
 protocol GalleryViewToPresenterProtocol: AnyObject {
     func readyToShow()
-    func openImage(_: URL)
+    func openImage(_: ImageFile)
     func didScrollToBottom()
     func didLongPressOnItem(at: IndexPath)
 }
@@ -19,15 +19,15 @@ protocol GalleryViewToPresenterProtocol: AnyObject {
 protocol GalleryPresenterToViewProtocol: AnyObject {
     func showUpdateIndicator()
     func hideUpdateIndicator()
-    func initiateGallery(_: [URL])
-    func addToGallery(_: [URL])
+    func initiateGallery(_: [ImageFile])
+    func addToGallery(_: [ImageFile])
     func removeItemFromGallery(at: IndexPath)
-    func initiateGalleryOffline(_: [URL])
+    func initiateGalleryOffline(_: [ImageFile])
     func showErrorMessage(_: String)
 }
 
 protocol GalleryPresenterToRouterProtocol: AnyObject {
-    func presentImage(withURL: URL)
+    func presentImage(file: ImageFile)
 }
 
 protocol GalleryPresenterToInteractorProtocol: AnyObject {
@@ -37,9 +37,9 @@ protocol GalleryPresenterToInteractorProtocol: AnyObject {
 }
 
 protocol GalleryInteractorToPresenterProtocol: AnyObject {
-    func didFinishDownloadInitialImages(_: [URL])
-    func didFinishDownloadUpdate(_: [URL])
-    func didLoadSavedImages(_: [URL])
+    func didFinishDownloadInitialImages(_: [ImageFile])
+    func didFinishDownloadUpdate(_: [ImageFile])
+    func didLoadSavedImages(_: [ImageFile])
     func reportError(_: String)
 }
 

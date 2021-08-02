@@ -32,16 +32,17 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
     }
 
     func loadSavedImages() {
-        var fileURLs: [URL] = []
+        var imageFiles: [ImageFile] = []
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         for fileName in pageFiles {
             let fileURL = URL(fileURLWithPath: fileName, relativeTo: documentDirectory)
-            fileURLs.append(fileURL)
+            let imageFile = ImageFile(from: fileURL)
+            imageFiles.append(imageFile)
         }
         if currentPage == 1 {
-            presenter?.didFinishDownloadInitialImages(fileURLs)
+            presenter?.didFinishDownloadInitialImages(imageFiles)
         } else {
-            presenter?.didFinishDownloadUpdate(fileURLs)
+            presenter?.didFinishDownloadUpdate(imageFiles)
         }
     }
 
@@ -49,7 +50,10 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         do {
             let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let filesInDocuments = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-            presenter?.didLoadSavedImages(filesInDocuments)
+            let images = filesInDocuments.map { (url) -> ImageFile in
+                 return ImageFile(from: url)
+             }
+            presenter?.didLoadSavedImages(images)
         } catch {
             print(error)
         }
@@ -69,7 +73,7 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         case .success(let value):
             let responseData: ServerResponseData = try! JSONDecoder().decode(ServerResponseData.self, from: value)
             self.imageListRetrieved(responseData.photos)
-        case .failure(let _):
+        case .failure(_):
             if currentPage == 1 {
                 self.loadOfflineImages()
             }
