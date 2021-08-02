@@ -30,7 +30,6 @@
 /* Begin PBXFileReference section */
 		2A7CC1BE4CB808F2EDA44677 /* Pods-curiosity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-curiosity.release.xcconfig"; path = "Target Support Files/Pods-curiosity/Pods-curiosity.release.xcconfig"; sourceTree = "<group>"; };
 		3939CDB185850A4A614A087E /* Pods_curiosity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_curiosity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6141F8608673FFDC2F34AF62 /* Pods-maps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maps.debug.xcconfig"; path = "Target Support Files/Pods-maps/Pods-maps.debug.xcconfig"; sourceTree = "<group>"; };
 		910EE61922FC364D00FAB53E /* ImageZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomView.swift; sourceTree = "<group>"; };
 		918907E322FE919800D60DB7 /* GalleryEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryEntity.swift; sourceTree = "<group>"; };
 		918907E622FE919800D60DB7 /* GalleryPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryPresenter.swift; sourceTree = "<group>"; };
@@ -51,7 +50,6 @@
 		9194842C22F8827C003B1B69 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		BCB1D5682308491C00587766 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		F19A6F92B8200CA9679AC73B /* Pods-curiosity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-curiosity.debug.xcconfig"; path = "Target Support Files/Pods-curiosity/Pods-curiosity.debug.xcconfig"; sourceTree = "<group>"; };
-		F6BF1C246323E344B15EEEB9 /* Pods-maps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maps.release.xcconfig"; path = "Target Support Files/Pods-maps/Pods-maps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +67,6 @@
 		11F0BB89F9F1CD1AA0607D5F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6141F8608673FFDC2F34AF62 /* Pods-maps.debug.xcconfig */,
-				F6BF1C246323E344B15EEEB9 /* Pods-maps.release.xcconfig */,
 				F19A6F92B8200CA9679AC73B /* Pods-curiosity.debug.xcconfig */,
 				2A7CC1BE4CB808F2EDA44677 /* Pods-curiosity.release.xcconfig */,
 			);
@@ -446,7 +442,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -501,7 +497,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -523,7 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.user.maps;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.user.curiosity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -542,7 +538,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.user.maps;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.user.curiosity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
