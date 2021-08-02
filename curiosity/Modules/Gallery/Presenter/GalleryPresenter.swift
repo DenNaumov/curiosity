@@ -31,7 +31,7 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
     }
 
     func openImage(_ url: URL) {
-        router?.gotoImage(imageURL: url)
+        router?.presentImage(withURL: url)
     }
 
     func readyToShow() {

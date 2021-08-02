@@ -90,10 +90,11 @@ extension GalleryViewController: GalleryPresenterToViewProtocol {
     }
 
     func addToGallery(_ localURLs: [URL]) {
-        let oldCount = dataSourceURLs.count
-        let addedCount = localURLs.count
+        let previousElementsCount = dataSourceURLs.count
+        let addedElementsCount = localURLs.count
+        let actualElementsCount = previousElementsCount + addedElementsCount
         var indexes: [IndexPath] = []
-        for i in oldCount...(oldCount + addedCount - 1) {
+        for i in previousElementsCount...(actualElementsCount - 1) {
             indexes.append(IndexPath(item: i, section: 0))
         }
         dataSourceURLs.append(contentsOf: localURLs)
@@ -155,8 +156,8 @@ extension GalleryViewController: UICollectionViewDataSource {
 extension GalleryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let photo = dataSourceURLs[indexPath.row]
-        presenter?.openImage(photo)
+        let photoURL = dataSourceURLs[indexPath.row]
+        presenter?.openImage(photoURL)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

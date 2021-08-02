@@ -71,7 +71,7 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
             responseData.photos.forEach { (photo) in
             }
             self.imageListRetrieved(responseData.photos)
-        case .failure(let error):
+        case .failure(let _):
             if currentPage == 1 {
                 self.loadOfflineImages()
             }

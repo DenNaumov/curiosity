@@ -27,7 +27,7 @@ protocol GalleryPresenterToViewProtocol: AnyObject {
 }
 
 protocol GalleryPresenterToRouterProtocol: AnyObject {
-    func gotoImage(imageURL: URL)
+    func presentImage(withURL: URL)
 }
 
 protocol GalleryPresenterToInteractorProtocol: AnyObject {

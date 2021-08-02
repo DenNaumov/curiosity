@@ -12,7 +12,7 @@ struct CuriosityPhoto: Decodable {
     let id: Int
     let remoteURL: URL
     let date: Date
-    let camera: CameraData
+    let camera: CuriosityCamera
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,11 +30,11 @@ struct CuriosityPhoto: Decodable {
         date = dateFormatter.date(from: dateString)!
 
         remoteURL = try values.decode(URL.self, forKey: .remoteURL)
-        camera = try values.decode(CameraData.self, forKey: .camera)
+        camera = try values.decode(CuriosityCamera.self, forKey: .camera)
     }
  }
 
-struct CameraData: Decodable {
+struct CuriosityCamera: Decodable {
     let id: Int
     let shortName: String
     let fullName: String?
