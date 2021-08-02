@@ -56,11 +56,11 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
     }
 
     private func getParamsString(page: Int) -> String {
-        var paramsString: String = ""
-        for (key, value) in params {
-            paramsString += "\(key)=\(value)&"
-        }
-        paramsString += "page=\(page)"
+        var httpParams = params
+        httpParams["page"] = page
+        let paramsString = httpParams.map { (key, value) in
+            return "\(key)=\(value)"
+        }.joined(separator: "&")
         return paramsString
     }
 
@@ -68,8 +68,6 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         switch response.result {
         case .success(let value):
             let responseData: ServerResponseData = try! JSONDecoder().decode(ServerResponseData.self, from: value)
-            responseData.photos.forEach { (photo) in
-            }
             self.imageListRetrieved(responseData.photos)
         case .failure(let _):
             if currentPage == 1 {
@@ -88,7 +86,7 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
     private func downloadImage(_ imageData: CuriosityPhoto) {
         let url = imageData.remoteURL
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        getData(from: url) { [unowned self] location, response, error in
+        fetchData(from: url) { [unowned self] location, response, error in
             guard let location = location else {
                 print("download error")
                 return
@@ -106,7 +104,7 @@ extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
         }
     }
 
-    private func getData(from url: URL, completion: @escaping (URL?, URLResponse?, Error?) -> ()) {
+    private func fetchData(from url: URL, completion: @escaping (URL?, URLResponse?, Error?) -> ()) {
         URLSession.shared.downloadTask(with: url, completionHandler: completion).resume()
     }
 
