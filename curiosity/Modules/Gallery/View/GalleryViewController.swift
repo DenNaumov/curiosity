@@ -100,7 +100,7 @@ extension GalleryViewController: GalleryPresenterToViewProtocol {
         dataSourceFiles.append(contentsOf: localFiles)
         collectionView?.insertItems(at: indexes)
     }
-    
+
     func removeItemFromGallery(at indexPath: IndexPath) {
         dataSourceFiles.remove(at: indexPath.row)
         collectionView.deleteItems(at: [indexPath])
@@ -110,7 +110,7 @@ extension GalleryViewController: GalleryPresenterToViewProtocol {
         dataSourceFiles = imageFiles
         setupCollectionView()
     }
-    
+
     func showErrorMessage(_ text: String) {
         loadingIndicator.stopAnimating()
         let label = UILabel(frame: .zero)
@@ -134,11 +134,11 @@ extension GalleryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSourceFiles.count
     }
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GalleryCollectionViewCell
         
