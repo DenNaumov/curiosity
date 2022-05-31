@@ -20,15 +20,17 @@ class GalleryInteractor: GalleryInteractorAssemblyProtocol {
 }
 
 extension GalleryInteractor: GalleryPresenterToInteractorProtocol {
- 
-    func downloadFirstPageImages() {
-        request(host + "?" + getParamsString(page: 1)).responseData(completionHandler: imageListRetrieveHandler)
+
+    func fetchFirstPageImageList() {
+        let url = host + "?" + getParamsString(page: 1)
+        request(url).responseData(completionHandler: handleImageListFetching)
     }
-    
-    func downloadNextPageImages() {
+
+    func fetchNextPageImageList() {
         currentPage += 1
         pageFiles = []
-        request(host + "?" + getParamsString(page: currentPage)).responseData(completionHandler: imageListRetrieveHandler)
+        let url = host + "?" + getParamsString(page: currentPage)
+        request(url).responseData(completionHandler: handleImageListFetching)
     }
 
     func loadSavedImages() {

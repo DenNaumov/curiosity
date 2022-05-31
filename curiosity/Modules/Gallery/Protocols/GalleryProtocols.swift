@@ -32,8 +32,8 @@ protocol GalleryPresenterToRouterProtocol: AnyObject {
 
 protocol GalleryPresenterToInteractorProtocol: AnyObject {
     func loadSavedImages()
-    func downloadFirstPageImages()
-    func downloadNextPageImages()
+    func fetchFirstPageImageList()
+    func fetchNextPageImageList()
 }
 
 protocol GalleryInteractorToPresenterProtocol: AnyObject {

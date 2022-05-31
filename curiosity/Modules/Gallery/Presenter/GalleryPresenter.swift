@@ -26,7 +26,7 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
         if !isUpdateDownloadInProgress {
             isUpdateDownloadInProgress = true
             viewController?.showUpdateIndicator()
-            interactor?.downloadNextPageImages()
+            interactor?.fetchNextPageImageList()
         }
     }
 
@@ -35,7 +35,7 @@ extension GalleryPresenter: GalleryViewToPresenterProtocol {
     }
 
     func readyToShow() {
-        interactor?.downloadFirstPageImages()
+        interactor?.fetchFirstPageImageList()
     }
 }
 

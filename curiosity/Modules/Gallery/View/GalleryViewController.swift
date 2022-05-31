@@ -18,7 +18,7 @@ class GalleryViewController: UIViewController, GalleryViewAssemblyProtocol {
 
     private var collectionView: UICollectionView!
     private var loadingIndicator: UIActivityIndicatorView!
-    private var updateIndicator : UIActivityIndicatorView!
+    private var updateIndicator: UIActivityIndicatorView!
     
     struct Appearance {
         static let cellHeight = 250
@@ -43,7 +43,7 @@ class GalleryViewController: UIViewController, GalleryViewAssemblyProtocol {
     }
 
     private func setupIndicator() {
-        loadingIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        loadingIndicator = UIActivityIndicatorView(style: .large)
         loadingIndicator?.startAnimating()
         view.addSubview(loadingIndicator)
         loadingIndicator?.snp.makeConstraints { make in
