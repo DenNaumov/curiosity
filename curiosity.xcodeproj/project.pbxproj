@@ -23,6 +23,8 @@
 		9194841922F87C0F003B1B69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9194841822F87C0F003B1B69 /* AppDelegate.swift */; };
 		9194842222F87C11003B1B69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9194842122F87C11003B1B69 /* Assets.xcassets */; };
 		9194842D22F8827C003B1B69 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9194842C22F8827C003B1B69 /* GalleryCollectionViewCell.swift */; };
+		92B054662831098200D51DDC /* CuriosityCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B054652831098200D51DDC /* CuriosityCamera.swift */; };
+		92B05468283109AA00D51DDC /* CuriosityPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B05467283109AA00D51DDC /* CuriosityPhoto.swift */; };
 		B7FF887D56EDB214709C9EB7 /* Pods_curiosity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3939CDB185850A4A614A087E /* Pods_curiosity.framework */; };
 		BCB1D5692308491C00587766 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB1D5682308491C00587766 /* APIModel.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +50,8 @@
 		9194842122F87C11003B1B69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9194842622F87C11003B1B69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9194842C22F8827C003B1B69 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		92B054652831098200D51DDC /* CuriosityCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityCamera.swift; sourceTree = "<group>"; };
+		92B05467283109AA00D51DDC /* CuriosityPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityPhoto.swift; sourceTree = "<group>"; };
 		BCB1D5682308491C00587766 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		F19A6F92B8200CA9679AC73B /* Pods-curiosity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-curiosity.debug.xcconfig"; path = "Target Support Files/Pods-curiosity/Pods-curiosity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				BCB1D5682308491C00587766 /* APIModel.swift */,
+				92B054652831098200D51DDC /* CuriosityCamera.swift */,
+				92B05467283109AA00D51DDC /* CuriosityPhoto.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -371,9 +377,11 @@
 			files = (
 				BCB1D5692308491C00587766 /* APIModel.swift in Sources */,
 				9189080322FE919800D60DB7 /* GalleryPresenter.swift in Sources */,
+				92B054662831098200D51DDC /* CuriosityCamera.swift in Sources */,
 				9189080622FE919800D60DB7 /* GalleryInteractor.swift in Sources */,
 				9194841922F87C0F003B1B69 /* AppDelegate.swift in Sources */,
 				9194842D22F8827C003B1B69 /* GalleryCollectionViewCell.swift in Sources */,
+				92B05468283109AA00D51DDC /* CuriosityPhoto.swift in Sources */,
 				9189080422FE919800D60DB7 /* GalleryViewController.swift in Sources */,
 				9189080222FE919800D60DB7 /* GalleryEntity.swift in Sources */,
 				9189080522FE919800D60DB7 /* GalleryProtocols.swift in Sources */,
