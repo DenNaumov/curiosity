@@ -6,6 +6,6 @@ target 'curiosity' do
   use_frameworks!
 
   # Pods for curiosity
-  pod 'Alamofire', '~> 4.9.1'
+  pod 'Alamofire', '~> 5.0.0'
   pod 'SnapKit', '~> 4.0.0'
 end
